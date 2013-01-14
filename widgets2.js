@@ -526,7 +526,7 @@ var widgets={forms:[], globalObject:this};
                 target = ctx.find(lf);
                 label=dict.label;
                 if(label){
-                    t="r?label.show():label.hide();"
+                    t="if(label[0]!=null&&label[0].id!=null&&label[0].id!=''&&typeof lid != 'undefined' ){label=$('#'+lid);}r?label.show():label.hide();"
                 }
                 testFunc = "testFunc=function(){var r,e,zid,v;"+
                     "v=$.trim($(this).val());"+
@@ -802,6 +802,7 @@ var widgets={forms:[], globalObject:this};
           tmp.find("label[for]").each(function(c, i){
               i=$(i);
               i.attr("for", i.attr("for").replace(regFirst0, "."+count));
+              if (i.hasClass('validation-err-msg')) i.hide();
           });
           tmp.find(".sort-number").text(count);
           xfind(displaySelector).last().after(tmp);
